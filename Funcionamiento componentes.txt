@@ -1,0 +1,22 @@
+Led_Moviendose = Es el led que nos va a indicar cuando el montacargas esta moviendose
+Resistencia_Movimeinto = Introduce una resistencia electrica hacia el led que indica que el montacargas esta en movimiento(led verde)
+Led_Parado = Es el led, que nos va a indicar cuando el montacargas esta detenido 
+Resistencia_Parado = Introduce una resistencia electrica hacia el led que indica que el montacargas esta parado(led rojo)
+
+Display_Piso = Nos muestra en que piso se encuentra el montacargas actualmente
+Resistencia_G = Introduce una resistencia electrica hacia el segmento G	del display
+Resistencia_F = Introduce una resistencia electrica hacia el segmento F	del display
+Resistencia_E = Introduce una resistencia electrica hacia el segmento E	del display
+Resistencia_D = Introduce una resistencia electrica hacia el segmento D	del display
+Resistencia_C = Introduce una resistencia electrica hacia el segmento C	del display
+Resistencia_B = Introduce una resistencia electrica hacia el segmento B	del display
+Resistencia_A = Introduce una resistencia electrica hacia el segmento A	del display
+
+Boton_Subir = Es el que le manda la señal al montacargas de subir
+Resistencia_Subir = Introduce una resistencia electrica hacia el boton que da la señal de subir
+Boton_Parar = Es el que le manda la señal al montacargas de parar
+Resistencia_Parar = Introduce una resistencia electrica hacia el boton que da la señal de parar
+Boton_Bajar = Es el que le manda la señal al montacargas de bajar
+Resistencia_Bajar = Introduce una resistencia electrica hacia el boton que da la señal de bajar
+
+Placa_Arduino = Se encarga de todas las conexiones del circuito, como tambien de alimentar los componentes
