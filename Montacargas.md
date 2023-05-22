@@ -52,6 +52,14 @@ Requisitos del Proyecto:
 
 ~~~ C++ 
 //C++ code
+//Foto resistencia
+int fotoresistencia = A4;
+int valorFotoresistencia = 0;
+//Sensor Flexion
+const int sensorFlexion = A3;
+//Servo
+#include <Servo.h>
+Servo servoMotor;
 //Botones
 const int botonSubir = A0;
 const int botonParar = A1;
@@ -72,12 +80,15 @@ unsigned long tiempoActual = 0;
 unsigned long tiempoPasado = 0;
 // Display
 const int pinesDisplay[7] = {2,3,4,5,6,7,8};
-
 void setup()
 {
   //Leds como output
   pinMode(ledEnMovimiento, OUTPUT);
   pinMode(ledParado, OUTPUT);
+  //Sensor como 
+  pinMode(sensorFlexion, INPUT);
+  //Servo como output
+  servoMotor.attach(11);
   //Botones como input
   pinMode(botonSubir, INPUT_PULLUP);
   pinMode(botonParar, INPUT_PULLUP);
@@ -96,6 +107,7 @@ void loop()
   motrarPisoActual(pisoActual);
   escribirPisoActual();
   modificarMontacargas();
+  verificarMontacargarEnMovimiento();
 }
 
 void cambioEstadoBotones()
@@ -127,15 +139,32 @@ void cambioEstadoBotones()
 
 void mostrarMovimientoMontacarga()
 {
+  valorFotoresistencia= analogRead(fotoresistencia);
   if(enMovimiento == true)
   {
-    digitalWrite(ledEnMovimiento, HIGH);
-    digitalWrite(ledParado, LOW);
+    if(valorFotoresistencia>256)
+    {
+      digitalWrite(ledEnMovimiento, HIGH);
+      digitalWrite(ledParado, LOW);
+    }
+    else
+    {
+      digitalWrite(ledEnMovimiento, LOW);
+      digitalWrite(ledParado, LOW);
+    }
   }
   else
   {
-    digitalWrite(ledEnMovimiento, LOW);
-    digitalWrite(ledParado, HIGH);
+    if(valorFotoresistencia>256)
+    {
+      digitalWrite(ledEnMovimiento, LOW);
+      digitalWrite(ledParado, HIGH);
+    }
+    else
+    {
+      digitalWrite(ledEnMovimiento, LOW);
+      digitalWrite(ledParado, LOW);
+    }
   }
 }
 
@@ -209,4 +238,16 @@ void modificarMontacargas()
     }
   }
 }
+void verificarMontacargarEnMovimiento()
+{
+  servoMotor.write(0);
+  if(enMovimiento == true)
+  {
+    if(pisoActual>=0 && pisoActual<=9)
+    {
+      servoMotor.write(180);
+    }
+  }
+}
+
 ~~~
